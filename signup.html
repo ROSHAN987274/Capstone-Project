@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Movies Center — Sign Up</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="signup.css">
+</head>
+<body>
+
+  <div class="bg-scene">
+    <div class="film-grain"></div>
+    <div class="spotlight-1"></div>
+    <div class="spotlight-2"></div>
+    <div class="reel-strip reel-top"></div>
+    <div class="reel-strip reel-bottom"></div>
+    <div class="scanlines"></div>
+  </div>
+
+  <canvas id="particleCanvas"></canvas>
+
+  <main class="stage">
+    <div class="card" id="signupCard">
+
+      <div class="brand">
+        <div class="brand-icon">
+          <span class="clapboard">🎬</span>
+          <div class="icon-ring"></div>
+        </div>
+        <h1 class="brand-title">Movies Center</h1>
+        <p class="brand-sub">Create your account</p>
+      </div>
+
+      <div class="divider">
+        <span class="divider-line"></span>
+        <span class="divider-dot"></span>
+        <span class="divider-line"></span>
+      </div>
+
+      <form id="signupForm" novalidate>
+
+        <div class="field-group" id="fieldName">
+          <label for="fullname">
+            <i class="fa-solid fa-user"></i>
+            <span>Full Name</span>
+          </label>
+          <div class="input-wrap">
+            <input type="text" id="fullname" placeholder="Enter your full name" required>
+            <span class="input-border"></span>
+          </div>
+        </div>
+
+        <div class="field-group" id="fieldEmail">
+          <label for="email">
+            <i class="fa-solid fa-envelope"></i>
+            <span>Email Address</span>
+          </label>
+          <div class="input-wrap">
+            <input type="email" id="email" placeholder="Enter your email" required>
+            <span class="input-border"></span>
+          </div>
+        </div>
+
+        <div class="field-group" id="fieldUsername">
+          <label for="username">
+            <i class="fa-solid fa-at"></i>
+            <span>Username</span>
+          </label>
+          <div class="input-wrap">
+            <input type="text" id="username" placeholder="Choose a username" required>
+            <span class="input-border"></span>
+          </div>
+        </div>
+
+        <div class="field-group" id="fieldPassword">
+          <label for="password">
+            <i class="fa-solid fa-lock"></i>
+            <span>Password</span>
+          </label>
+          <div class="input-wrap password-wrap">
+            <input type="password" id="password" placeholder="Create a password" required>
+            <button type="button" class="eye-btn" id="eyeBtn1">
+              <i class="fa-solid fa-eye" id="eyeIcon1"></i>
+            </button>
+            <span class="input-border"></span>
+          </div>
+        </div>
+
+        <div class="field-group" id="fieldConfirm">
+          <label for="confirmPassword">
+            <i class="fa-solid fa-shield-halved"></i>
+            <span>Confirm Password</span>
+          </label>
+          <div class="input-wrap password-wrap">
+            <input type="password" id="confirmPassword" placeholder="Repeat your password" required>
+            <button type="button" class="eye-btn" id="eyeBtn2">
+              <i class="fa-solid fa-eye" id="eyeIcon2"></i>
+            </button>
+            <span class="input-border"></span>
+          </div>
+        </div>
+
+        <div class="error-box" id="errorBox" aria-live="polite">
+          <i class="fa-solid fa-circle-exclamation"></i>
+          <span id="errorMsg"></span>
+        </div>
+
+        <div class="strength-wrap" id="strengthWrap">
+          <div class="strength-bar">
+            <div class="strength-fill" id="strengthFill"></div>
+          </div>
+          <span class="strength-label" id="strengthLabel">Password strength</span>
+        </div>
+
+        <button type="submit" class="submit-btn" id="submitBtn">
+          <span class="btn-text">Create Account</span>
+          <span class="btn-icon"><i class="fa-solid fa-arrow-right"></i></span>
+          <span class="btn-loader" id="btnLoader">
+            <i class="fa-solid fa-spinner fa-spin"></i>
+          </span>
+          <div class="btn-shine"></div>
+        </button>
+
+        <p class="signup-row">
+          Already have an account? <a href="index.html" class="link-accent">Sign in</a>
+        </p>
+
+      </form>
+
+    </div>
+  </main>
+
+  <script src="signup.js"></script>
+</body>
+</html>
