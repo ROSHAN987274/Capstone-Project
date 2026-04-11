@@ -150,42 +150,110 @@ const SEED={
 };
 
 // ── TMDB ID MAPPING FOR EMBED ──
+// Maps SEED item IDs to TMDb IDs for the embed player
+// Movies use movie IDs, Anime/K-Dramas/Series use TV show IDs
 const TMDB_IDS = {
-  // Movies (exact TMDb IDs from user)
+  // === MOVIES ===
+  "avengers-endgame": 299534,
+  "dark-knight": 155,
+  "interstellar": 157336,
+  "inception": 27205,
+  "oppenheimer": 872585,
+  "dune2": 693134,
+  "dhurandhar": 1291608,
+  "dhurandhar-revenge": 1582770,
+  "animal": 781732,
+  "kgf-1": 564147,
+  "kgf-2": 587412,
+  "bahubali-1": 256040,
+  "bahubali-2": 350312,
+  "jawan": 872906,
+  "titanic": 597,
+  "spiderman-nwh": 634649,
+  "parasite": 496243,
+  "shawshank": 278,
+  "pulp-fiction": 680,
+  "the-batman": 414906,
+  "fight-club": 550,
+  "avatar2": 76600,
+  "joker": 475557,
+  "forrest-gump": 13,
+  "matrix": 603,
+  "godfather": 238,
+  "goodfellas": 769,
+  "schindlers-list": 424,
+  "whiplash": 84365,
+  "la-la-land": 313369,
+  "gladiator": 98,
+  "wolf-wall": 106646,
+  "silence-lambs": 274,
+  "black-panther": 284054,
+  "alien": 348,
+  "spirited-away": 129,
+  "1917": 530915,
+  "oldboy": 87516,
+  "memento": 77,
+  "requiem": 641,
+  "mad-max": 76341,
+  "leon": 244786,
+  "braveheart": 197,
+  "inglourious": 16869,
+  "truman": 37165,
+  "12-angry": 389,
+  "there-will-be-blood": 7345,
+  "lawrence-arabia": 947,
+  "boyhood": 85350,
+  "blade-runner-2049": 335984,
+  "apocalypse-now": 28,
+  "beautiful-mind": 453,
+  "coco": 18955,
+  "princess-mononoke": 129,
+  "the-shining": 694,
+  "psycho": 539,
+  "seven-samurai": 204,
 
-  "Dhurandhar": 32757279,"avengers-endgame": 299534, "dark-knight": 155, "interstellar": 157336, "inception": 27205,
-  "oppenheimer": 872585, "godfather": 238, "top-gun-mav": 361743, "dune2": 693134,
-  "titanic": 597, "spiderman-nwh": 634649, "parasite": 48311, "shawshank": 278,
-  "pulp-fiction": 680, "the-batman": 414906, "fight-club": 550, "avatar2": 76600,
-  "joker": 129507, "forrest-gump": 13, "matrix": 603, "goodfellas": 769,
-  "schindlers-list": 424, "whiplash": 84365, "la-la-land": 313369, "gladiator": 98,
-  "wolf-wall": 106646, "prestige": 1124, "silence-lambs": 274, "seven": 807,
-  "black-panther": 86841, "no-country": 6977, "casino": 524, "alien": 348,
-  "spirited-away": 129, "1917": 530915, "oldboy": 87516,
-  "memento": 77, "requiem": 641, "mad-max": 76341, "get-out": 130627,
-  "gone-girl": 210577, "leon": 244786, "v-vendetta": 752, "braveheart": 197,
-  "revenant": 79896, "gravity": 49047, "inglourious": 16869, "django": 68718,
-  "truman": 37165, "eternal-sunshine": 38, "12-angry": 389, "dark-knight-rises": 49026,
-  "there-will-be-blood": 7345, "once-upon-hollywood": 403895, "full-metal": 600,
-  "lawrence-arabia": 947, "2001": 62, "hurt-locker": 12162, "boyhood": 85350,
-  "blade-runner-2049": 335984, "heat": 949, "apocalypse-now": 28, "barbie": 346698,
-  "beautiful-mind": 453, "catch-me": 640, "rain-man": 380, "john-wick": 245891,
-  "inside-out": 49175, "up": 14160, "coco": 18955, "toy-story": 862,
-  "lion-king": 8587, "princess-mononoke": 129, "shining": 694, "psycho": 539,
-  "city-of-god": 598, "amelie": 391, "pans-labyrinth": 11218, "seven-samurai": 204,
-  "life-beautiful": 287766, "sixth-sense": 745,
-  // Anime (TMDb TV IDs)
-  "naruto-shippuden": "vi1167440921","Attack on Titan" : 1429,
-  // K-Dramas (TMDb TV IDs)
-  "its-okay": 241506, "mr-sunshine": 12267, "flower-of-evil": 28044,
-  "hospital-playlist": 290143, "voice": 95852,
-  // Series (TMDb TV IDs from user)
-  "breaking-bad": 1396, "game-of-thrones": 1399, "stranger-things": 66732,
-  "the-wire": 1438, "sopranos": 1398, "chernobyl": 87108, "true-detective": 46648,
-  "better-call-saul": 60059, "the-last-of-us": 100088, "house-of-dragon": 94997,
-  "euphoria": 85552, "succession": 76331, "the-boys": 28172, "mandalorian": 82856,
-  "peaky-blinders": 60574, "dark": 70523, "band-of-brothers": 4613,
-  "ozark": 69740, "westworld": 63247, "the-crown": 65494
+  // === ANIME (TV Shows) ===
+  "naruto-shippuden": 31910,
+  "aot": 1429,
+  "fma-b": 31911,
+  "demon-slayer": 85937,
+  "jujutsu-kaisen": 126310,
+  "one-piece": 37854,
+  "chainsaw-man": 97441,
+
+  // === K-DRAMAS (TV Shows) ===
+  "squid-game": 93405,
+  "crash-landing": 94796,
+  "goblin": 67915,
+  "vincenzo": 121957,
+  "the-glory": 129828,
+  "its-okay": 107349,
+  "woo-atty": 135972,
+  "my-love-star": 62741,
+  "misaeng": 62649,
+  "mr-sunshine": 72879,
+  "flower-of-evil": 110316,
+  "sky-castle": 85271,
+  "hospital-playlist": 135145,
+  "stranger": 66825,
+  "prison-playbook": 74208,
+  "business-proposal": 135977,
+  "hometown-cha": 125470,
+  "voice": 1396,
+  "moon-lovers": 65814,
+
+  // === SERIES (TV Shows) ===
+  "breaking-bad": 1396,
+  "game-of-thrones": 1399,
+  "stranger-things": 66732,
+  "the-wire": 2316,
+  "sopranos": 1398,
+  "chernobyl": 87108,
+  "the-last-of-us": 100088,
+  "succession": 139264,
+  "the-boys": 71593,
+  "mandalorian": 82856,
+  "dark": 70523,
 };
 
 // ── UTILS ──
@@ -624,10 +692,10 @@ function openInfoModal(item) {
 
   document.getElementById('infoTrailerBtn').href = trailerURL(item);
 
-  // Load embed if available
+  // Load embed if available (check item.tmdbId first, then fallback to TMDB_IDS)
   const embedDiv = document.getElementById('infoEmbed');
   const embedFrame = document.getElementById('embedFrame');
-  const tmdbId = TMDB_IDS[item.id];
+  const tmdbId = item.tmdbId || TMDB_IDS[item.id];
   if (tmdbId) {
     embedDiv.style.display = 'block';
     embedFrame.src = `https://www.vidking.net/embed/movie/${tmdbId}`;
