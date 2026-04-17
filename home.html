@@ -1,0 +1,254 @@
+        <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Movies Center — Discover</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+<link rel = "stylesheet" href = "home.css">
+</head>
+<body>
+
+<!-- ══ HEADER ══ -->
+<header id="siteHeader">
+  <a class="hdr-logo" href="#">
+    <span class="hdr-logo-icon">🎬</span>
+    <div>
+      <div class="hdr-logo-text">Movies Center</div>
+      <div class="hdr-logo-sub">Discover · Explore</div>
+    </div>
+  </a>
+  <nav class="hdr-nav">
+    <a onclick="navTo('moviesSection')">Movies</a>
+    <a onclick="navTo('animeSection')">Anime</a>
+    <a onclick="navTo('kdramaSection')">K-Drama</a>
+    <a onclick="navTo('seriesSection')">Series</a>
+  </nav>
+  <div class="hdr-right">
+    <div class="srch-inline-wrap" id="srchIW">
+      <input id="srchInput" type="text" placeholder="Search titles, genres, cast…" oninput="doSearch(this.value)"/>
+      <button class="srch-clear" onclick="clearSearch()" title="Clear"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <button class="hdr-icon-btn" id="srchTog" title="Search (S)"><i class="fa-solid fa-magnifying-glass"></i></button>
+    <button class="hdr-icon-btn" id="themeTog" title="Toggle theme (T)"><i class="fa-solid fa-moon"></i></button>
+    <button class="hdr-icon-btn" onclick="openModal('wlModal')" title="Wishlist (W)">
+      <i class="fa-solid fa-heart"></i>
+      <span class="wl-badge" id="wlBdg">0</span>
+    </button>
+    <div class="hdr-profile" onclick="openModal('profBg')">
+      <span class="hdr-av" id="hdrAv">🎭</span>
+      <span class="hdr-nm" id="hdrNm">Guest</span>
+    </div>
+    <button class="logout-btn" onclick="logout()"><i class="fa-solid fa-right-from-bracket"></i> Logout</button>
+  </div>
+</header>
+
+<!-- ══ HERO ══ -->
+<section id="hero">
+  <div class="hero-bg" id="heroBg"></div>
+  <div class="hero-content">
+    <div class="hero-badge" id="heroBadge">🔥 Featured</div>
+    <h1 id="heroTitle">Movies Center</h1>
+    <div class="hero-meta">
+      <span class="hero-star" id="heroStars">⭐ 8.5</span>
+      <span class="hero-dot"></span>
+      <span id="heroYear"></span>
+      <span class="hero-dot"></span>
+      <span id="heroGenre"></span>
+    </div>
+    <p id="heroDesc">Discover the best movies, anime, K-dramas and series from around the world.</p>
+    <div class="hero-btns">
+      <a class="h-btn h-btn-primary" id="heroTrailerBtn" href="#" target="_blank" rel="noopener">
+        <i class="fa-brands fa-youtube"></i> Watch Trailer
+      </a>
+      <button class="h-btn h-btn-sec" id="heroWlBtn" onclick="heroWlToggle()">
+        <i class="fa-solid fa-heart"></i> Add to Wishlist
+      </button>
+      <button class="h-btn h-btn-sec" onclick="heroInfoOpen()">
+        <i class="fa-solid fa-circle-info"></i> More Info
+      </button>
+    </div>
+  </div>
+  <div class="hero-dots" id="heroDots"></div>
+</section>
+
+<!-- ══ STATS BAR ══ -->
+<div class="stats-bar" id="statsBar">
+  <div class="stat-item"><div class="stat-num" id="s-movies">0</div><div class="stat-lbl">Movies</div></div>
+  <div class="stat-div"></div>
+  <div class="stat-item"><div class="stat-num" id="s-anime">0</div><div class="stat-lbl">Anime</div></div>
+  <div class="stat-div"></div>
+  <div class="stat-item"><div class="stat-num" id="s-kdrama">0</div><div class="stat-lbl">K-Dramas</div></div>
+  <div class="stat-div"></div>
+  <div class="stat-item"><div class="stat-num" id="s-series">0</div><div class="stat-lbl">Series</div></div>
+  <div class="stat-div"></div>
+  <div class="stat-item"><div class="stat-num" id="s-total">0</div><div class="stat-lbl">Total Titles</div></div>
+</div>
+
+<!-- ══ PROGRESS ══ -->
+<div id="genProgress">
+  <span class="gen-icon">⚙️</span>
+  <div class="gen-text-wrap">
+    <div class="gen-label" id="genLabel">Building your library…</div>
+    <div class="gen-bar-wrap"><div id="genFill"></div></div>
+  </div>
+  <span class="gen-count" id="genCountLabel">0 / 1000+</span>
+</div>
+
+<!-- ══ TRENDING STRIP ══ -->
+<div class="trending-strip section" id="trendingStrip">
+  <div class="trending-title">🔥 Trending Now</div>
+  <div class="trending-items" id="trendingItems"></div>
+</div>
+
+<!-- ══ CONTROLS ══ -->
+<div class="controls-bar">
+  <div class="genre-bar" id="genreBar"></div>
+  <select class="sort-select" id="sortSel" onchange="renderAll()" title="Sort titles">
+    <option value="default">Default</option>
+    <option value="rating">⭐ Rating</option>
+    <option value="year-new">🆕 Newest First</option>
+    <option value="year-old">🕰️ Oldest First</option>
+    <option value="title">🔤 A–Z</option>
+  </select>
+  <button class="random-btn" onclick="randomPick()">🎲 Pick for Me</button>
+</div>
+
+<!-- ══ SEARCH RESULTS ══ -->
+<div id="searchSec">
+  <div class="srch-hdr">
+    <span class="srch-title">Search Results</span>
+    <span id="srchCount"></span>
+  </div>
+  <div class="srch-grid" id="srchGrid"></div>
+  <div class="srch-empty" id="srchEmpty"><i class="fa-solid fa-film"></i>No results found</div>
+</div>
+
+<!-- ══ SECTIONS ══ -->
+<div class="section" id="moviesSection">
+  <div class="sec-hdr">
+    <span class="sec-emoji">🎥</span>
+    <span class="sec-title">Movies</span>
+    <span class="sec-count" id="movies-count">0</span>
+    <button class="sec-more" id="movies-more" onclick="loadMore('movies')">Load More</button>
+  </div>
+  <div class="cards-row" id="moviesRow"></div>
+</div>
+
+<div class="section" id="animeSection">
+  <div class="sec-hdr">
+    <span class="sec-emoji">🍥</span>
+    <span class="sec-title">Anime</span>
+    <span class="sec-count" id="anime-count">0</span>
+    <button class="sec-more" id="anime-more" onclick="loadMore('anime')">Load More</button>
+  </div>
+  <div class="cards-row" id="animeRow"></div>
+</div>
+
+<div class="section" id="kdramaSection">
+  <div class="sec-hdr">
+    <span class="sec-emoji">🇰🇷</span>
+    <span class="sec-title">K-Drama</span>
+    <span class="sec-count" id="kdrama-count">0</span>
+    <button class="sec-more" id="kdrama-more" onclick="loadMore('kdrama')">Load More</button>
+  </div>
+  <div class="cards-row" id="kdramaRow"></div>
+</div>
+
+<div class="section" id="seriesSection">
+  <div class="sec-hdr">
+    <span class="sec-emoji">📺</span>
+    <span class="sec-title">Series</span>
+    <span class="sec-count" id="series-count">0</span>
+    <button class="sec-more" id="series-more" onclick="loadMore('series')">Load More</button>
+  </div>
+  <div class="cards-row" id="seriesRow"></div>
+</div>
+
+<footer>
+  <div class="footer-logo">Movies Center</div>
+  <div class="footer-txt"> ©© copyright Roshan Chaurasiya</div>
+  <div class="footer-links">
+    <a href="#" onclick="openModal('profBg');return false;">Profile</a>
+    <a href="#" onclick="openModal('wlModal');return false;">Wishlist</a>
+  </div>
+</footer>
+
+<!-- ══ BACK TO TOP ══ -->
+<button id="bttBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Back to top"><i class="fa-solid fa-chevron-up"></i></button>
+
+<!-- ══ TOAST ══ -->
+<div id="toast"><span id="toastIcon"></span><span id="toastTxt"></span></div>
+
+<!-- ══ INFO MODAL ══ -->
+<div class="modal-bg" id="infoBg">
+  <div class="modal-box">
+    <button class="modal-close" type="button" onclick="closeModal('infoBg')" title="Close"><i class="fa-solid fa-xmark"></i></button>
+    <div class="info-hero" id="infoHero"></div>
+    <div class="info-body">
+      <div class="info-top">
+        <div class="info-poster-g" id="infoPg"></div>
+        <div>
+          <div class="info-tags" id="infoTags"></div>
+          <h2 id="infoTitle"></h2>
+        </div>
+      </div>
+      <div class="info-meta-row" id="infoMeta"></div>
+      <p id="infoDesc"></p>
+      <div class="info-extras" id="infoExtras"></div>
+      <div class="info-action-row">
+        <button class="ia-btn ia-trailer" id="infoPlayBtn" onclick="playEmbed()"><i class="fa-solid fa-play"></i> Watch Now</button>
+        <a class="ia-btn ia-trailer" id="infoTrailerBtn" href="#" target="_blank" rel="noopener"><i class="fa-brands fa-youtube"></i> Watch Trailer</a>
+        <button class="ia-btn ia-wl" id="infoWlBtn" onclick="infoWlToggle()"><i class="fa-solid fa-heart"></i> Add to Wishlist</button>
+      </div>
+      <div class="info-embed" id="infoEmbed">
+        <!-- Embed player: uses TMDb IDs to load from vidking.net (first episode/season for TV shows) -->
+        <iframe id="embedFrame" src="" width="100%" height="500" frameborder="0" allowfullscreen sandbox="allow-scripts allow-same-origin" title="Video player"></iframe>
+      </div>
+      <div class="info-similar" id="infoSimilar">
+        <div class="info-similar-title">Similar Titles</div>
+        <div class="sim-grid" id="simGrid"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ WISHLIST MODAL ══ -->
+<div class="modal-bg" id="wlModal">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal('wlModal')" title="Close"><i class="fa-solid fa-xmark"></i></button>
+    <div class="wl-content">
+      <div class="wl-hdr">
+        <span class="wl-hdr-icon">💖</span>
+        <span class="wl-title">My Wishlist</span>
+        <button class="clear-wl-btn" onclick="clearAllWishlist()">Clear All</button>
+      </div>
+      <div class="wl-empty" id="wlEmpty">
+        <i class="fa-regular fa-heart"></i>
+        <p>Your wishlist is empty</p>
+        <small>Click ❤️ on any title to save it here</small>
+      </div>
+      <div class="wl-grid" id="wlGrid"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ PROFILE MODAL ══ -->
+<div class="modal-bg" id="profBg">
+  <div class="modal-box prof-modal">
+    <button class="modal-close" type="button" onclick="closeModal('profBg')" title="Close"><i class="fa-solid fa-xmark"></i></button>
+    <div class="prof-title">My Profile</div>
+    <span class="prof-av-big" id="bigAv">🎭</span>
+    <div class="av-grid" id="avGrid"></div>
+    <div class="pf-label">Display Name</div>
+    <input class="pf-inp" id="pfName" type="text" placeholder="Enter your name…" maxlength="24"/>
+    <button class="pf-save" onclick="saveProfile()">Save Profile</button>
+    <div id="saveMsg"></div>
+  </div>
+</div>
+
+<script src = "home.js" ></script>
+</body>
+</html>
