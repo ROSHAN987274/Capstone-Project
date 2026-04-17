@@ -170,7 +170,7 @@ loginForm.addEventListener("submit", async (e) => {
     submitBtn.style.boxShadow  = "0 16px 48px rgba(46,204,113,0.4)";
 
     setTimeout(() => {
-      window.location.href = "home.html";
+      window.location.href = "./home.html";
     }, 1000);
 
   } else {
